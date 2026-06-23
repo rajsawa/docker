@@ -26,7 +26,7 @@ jobs:
           name: deploy-report
           path: deploy.txt
   Build:
-    needs: deploy 
+    # needs: deploy 
     runs-on: ubuntu-latest
     steps:
       - name: print msg
@@ -38,7 +38,7 @@ jobs:
       - name: display download content
         run: cat deploy.txt
   test: 
-    needs: build
+    # needs: build
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
@@ -46,6 +46,8 @@ jobs:
       - name: build docker image
         run: docker build -t studentportal .
       - name: run container
-        run: docker run -d --name test2 studentportal
-      # - name: check running container logs
-      #   run: docker exec -it test2 bash
+        run: docker run -d --name test2 -p 5000:80 studentportal
+      - name: list docker images
+        run: docker images
+      - name: check running container logs
+        run: docker exec -it test2 bash
