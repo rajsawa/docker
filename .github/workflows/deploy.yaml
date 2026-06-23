@@ -21,6 +21,8 @@ jobs:
           docker run -d --name test6 -p 5004:80 studentportal
           docker run -d --name test7 -p 5005:80 studentportal
           docker images
+      - name: list containers
+        run: docker ps
           
-          
+
       
