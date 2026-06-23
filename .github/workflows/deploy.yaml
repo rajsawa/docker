@@ -15,7 +15,7 @@ jobs:
       - name: run container
         run: docker run -d --name test2 -p 5000:80 studentportal
       - name: create new container
-        run: docker run -d --name test3 -p 50001:80 studentportal
+        run: docker run -d --name test3 -p 5000:80 studentportal
       - name: stop container test2 for testing
         run: docker stop test2 
       - name: list docker images
