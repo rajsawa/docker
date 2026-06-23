@@ -19,11 +19,11 @@ jobs:
       - name: list running containers
         run: docker ps 
       - name: build deploy file
-        run: echo "hi welcome" > deploy 
+        run: echo "hi welcome to my docker lab" > deploy.txt  
       - name: upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: deploy report
+          name: deploy-report
           path: deploy.txt
   Build:
     needs: deploy 
@@ -34,6 +34,6 @@ jobs:
       - name: download artifact
         uses: actions/download-artifact@v4
         with:   
-          name: deploy report
+          name: deploy-report
       - name: display download content
         run: cat deploy.txt
