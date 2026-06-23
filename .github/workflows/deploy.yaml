@@ -46,6 +46,6 @@ jobs:
       - name: build docker image
         run: docker build -t studentportal .
       - name: run container
-        run: docker run -d test2 studentportal
-      - name: check running container logs
-        run: docker exec -it test2 bash
+        run: docker run -d --name test2 studentportal
+      # - name: check running container logs
+      #   run: docker exec -it test2 bash
