@@ -18,3 +18,21 @@ jobs:
         run: docker run -d --name container1 -p 5000:5000 studentportal
       - name: list running containers
         run: docker ps 
+      - name: build deploy file
+        run: echo "hi welcome" > deploy_report 
+      - name: upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: deploy_report
+          path: deploy.txt
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print msg
+        run: echo "hello"
+      - name: download artifact
+        uses: actions/download-artifact@v4
+        with:   
+          name: deploy_report
+      - name: display download content
+        run: cat deploy.txt
