@@ -37,3 +37,13 @@ jobs:
           name: deploy-report
       - name: display download content
         run: cat deploy.txt
+  test: 
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+      - name: run container
+        run: docker run -d test2 studentportal
+      - name: check running container logs
+        run: docker exec -it test2 bash
