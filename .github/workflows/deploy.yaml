@@ -1,26 +1,19 @@
-name: docker test lab
+name: dockertest
 on:
-  push:
-    branches:
-      - main
+  branches:
+    - main
   workflow_dispatch:
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout code
-        uses: actions/checkout@v4
-      - name: Print message
-        run: echo "starting docker image"
-      - name: build docker image
-        run: docker build -t mystudentportal .
-      - name: dislay docker images
-        run: docker images
-      - name: save image details into file
-        run: docker images > image-report.txt
-      - name: upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: image-report
-          path: image-report.txt
-        
+  deploy:
+  runs-on: ubuntu-latest
+  steps:
+    - name: checkout code
+      uses: actions/checkout@v4
+    - name: build docker image
+      run: docker build -t studentportal .
+    - name: list docker images
+      run: docker images
+    - name: run container 
+      run: docker run - name container1 studentportal
+    - name: list running containers
+      run: docker ps 
