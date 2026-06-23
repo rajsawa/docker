@@ -50,4 +50,5 @@ jobs:
       - name: list docker images
         run: docker images
       - name: check running container logs
-        run: docker exec -it test2 bash
+        run: docker logs test2 
+        run: docker exec -it test2 sh
