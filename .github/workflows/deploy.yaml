@@ -5,40 +5,7 @@ on:
       - main
   workflow_dispatch:
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout code
-        uses: actions/checkout@v4
-      - name: build docker image
-        run: docker build -t studentportal .
-      - name: list docker images
-        run: docker images
-      - name: run container 
-        run: docker run -d --name container1 -p 5000:5000 studentportal
-      - name: list running containers
-        run: docker ps 
-      - name: build deploy file
-        run: echo "hi welcome to my docker lab" > deploy.txt  
-      - name: upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: deploy-report
-          path: deploy.txt
-  Build:
-    needs: deploy 
-    runs-on: ubuntu-latest
-    steps:
-      - name: print msg
-        run: echo "hello"
-      - name: download artifact
-        uses: actions/download-artifact@v4
-        with:   
-          name: deploy-report
-      - name: display download content
-        run: cat deploy.txt
   test: 
-    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
@@ -47,6 +14,10 @@ jobs:
         run: docker build -t studentportal .
       - name: run container
         run: docker run -d --name test2 -p 5000:80 studentportal
+      - name: create new container
+        run: docker run -d --name test3 -p 50001:80 studentportal
+      - name: stop container test2 for testing
+        run: docker stop test2 
       - name: list docker images
         run: docker images
       - name: check running container details
@@ -54,4 +25,4 @@ jobs:
           docker logs test2 
           docker ps
           docker ps -a
-          docker inspect test2
+
