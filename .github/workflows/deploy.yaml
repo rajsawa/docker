@@ -26,7 +26,7 @@ jobs:
           name: deploy-report
           path: deploy.txt
   Build:
-    # needs: deploy 
+    needs: deploy 
     runs-on: ubuntu-latest
     steps:
       - name: print msg
@@ -38,7 +38,7 @@ jobs:
       - name: display download content
         run: cat deploy.txt
   test: 
-    # needs: build
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
