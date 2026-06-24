@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
-        uses: actons/checkout@v4
+        uses: actions/checkout@v4
       - name: build docker image
         run: docker build -t myimage .
       
