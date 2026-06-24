@@ -20,3 +20,5 @@ jobs:
           docker inspect container1
           docker ps 
           docker ps -a 
+      - name: stop container1
+        run: docker stop container2
